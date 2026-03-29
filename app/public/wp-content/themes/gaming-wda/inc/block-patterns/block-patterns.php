@@ -1,0 +1,24 @@
+<?php
+
+function gaming_wda_register_block_pattern() {
+	if ( function_exists( 'register_block_pattern_category' ) ) {
+
+		register_block_pattern_category(
+			'gaming-wda',
+			array( 'label' => __( 'Gaming WDA', 'gaming-wda' ) )
+		);
+	}
+
+	if ( function_exists( 'register_block_pattern' ) ) {
+		register_block_pattern(
+			'gaming-wda/call-to-action-section',
+			array(
+				'title'      => __( 'Call to Action Section', 'gaming-wda' ),
+				'categories' => array( 'gaming-wda' ),
+				'content'    => "<!-- wp:group {\"className\":\"wpdevart-patterns-bg\"} -->\n<div class=\"wp-block-group wpdevart-patterns-bg\"><!-- wp:paragraph {\"style\":{\"spacing\":{\"margin\":\"0\"},\"color\":{\"text\":\"#d5d5d5\"},\"typography\":{\"fontSize\":\"16px\",\"textTransform\":\"uppercase\",\"letterSpacing\":\"1px\",\"fontWeight\":\"400\"}}} -->\n<p class=\"has-text-color has-text-align-center\" style=\"margin:0;color:#d5d5d5;font-size:16px;text-transform:uppercase;letter-spacing:1px;font-weight:400\">A brief description of the section below.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"style\":{\"typography\":{\"fontSize\":\"37px\",\"textTransform\":\"uppercase\",\"letterSpacing\":\"1px\",\"fontWeight\":\"400\",\"textDecoration\":\"none\"},\"color\":{\"text\":\"#f5f5f5\"}}} -->\n<h2 class=\"wp-block-heading has-text-color has-link-color has-text-align-center wpdevart-pattern-main-headings-line\" style=\"color:#f5f5f5;font-size:37px;text-transform:uppercase;letter-spacing:1px;font-weight:400;text-decoration:none\">Best Offer</h2>\n<!-- /wp:heading -->\n\n<!-- wp:columns -->\n<div class=\"wp-block-columns call-to-action-gap-align\"><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:cover {\"url\":\"" . esc_url(get_template_directory_uri()) . "/images/call-to-action.jpg\",\"id\":32,\"dimRatio\":0,\"isDark\":false,\"align\":\"full\",\"layout\":{\"type\":\"constrained\"}} -->\n<div class=\"wp-block-cover alignfull is-light\"><span aria-hidden=\"true\" class=\"wp-block-cover__background has-background-dim-0 has-background-dim\"></span><img class=\"wp-block-cover__image-background wp-image-32\" alt=\"\" src=\"" . esc_url(get_template_directory_uri()) . "/images/call-to-action.jpg\" data-object-fit=\"cover\"/><div class=\"wp-block-cover__inner-container\"></div></div>\n<!-- /wp:cover --></div>\n<!-- /wp:column --><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":3,\"style\":{\"color\":{\"text\":\"#e03100\"},\"typography\":{\"fontSize\":\"30px\",\"textTransform\":\"uppercase\",\"fontStyle\":\"normal\",\"fontWeight\":\"400\"},\"elements\":{\"link\":{\"color\":{\"text\":\"#e03100\"}}}}} -->\n<h3 class=\"wp-block-heading has-text-color has-link-color call-to-action-content\" style=\"color:#e03100;font-size:30px;font-style:normal;font-weight:400;text-transform:uppercase\">Call to Action Title</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph {\"style\":{\"color\":{\"text\":\"#d5d5d5\"},\"elements\":{\"link\":{\"color\":{\"text\":\"#d5d5d5\"}}},\"typography\":{\"fontSize\":\"16px\"}},\"className\":\"call-to-action-content\"} -->\n<p class=\"has-text-color has-link-color call-to-action-content\" style=\"color:#d5d5d5;font-size:16px\">This is an important post or event that visitors to our site should pay attention to. Any important content can be added here. This is test content, so feel free to add your own text here. If you are interested or want to know more details, you can click the link below and check more details.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:buttons {\"className\":\"call-to-action-content\"} -->\n<div class=\"wp-block-buttons call-to-action-content\"><!-- wp:button {\"style\":{\"typography\":{\"fontSize\":\"14px\",\"textTransform\":\"uppercase\",\"fontStyle\":\"normal\",\"letterSpacing\":\"1px\",\"fontWeight\":\"500\"},\"border\":{\"radius\":\"1px\",\"width\":\"1px\"},\"spacing\":{\"padding\":\"21px 58px\"},\"color\":{\"text\":\"#e03100\",\"background\":\"#00000000\"},\"elements\":{\"link\":{\"color\":{\"text\":\"#e03100\"}}}},\"className\":\"is-style-outline\"} -->\n<div class=\"wp-block-button has-custom-font-size is-style-outline\" style=\"font-size:14px;font-style:normal;letter-spacing:1px;font-weight:500;text-transform:uppercase;\"><a class=\"wp-block-button__link has-text-color has-background has-link-color wp-element-button\" href=\"#\" style=\"border-radius:1px;border-width:1px;color:#e03100;padding:21px 58px;background-color:#00000000\">Learn More</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons -->\n\n</div>\n<!-- /wp:column -->\n\n</div>\n<!-- /wp:columns --></div>\n<!-- /wp:group -->",
+			)
+		);
+	}
+}
+
+add_action( 'init', 'gaming_wda_register_block_pattern' );
