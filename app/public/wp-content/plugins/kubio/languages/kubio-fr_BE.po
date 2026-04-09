@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T11:43:29+02:00\n"
+"POT-Creation-Date: 2026-04-02T13:04:43+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language: \n"
 "X-Generator: WP-CLI 2.12.0\n"
@@ -918,24 +918,6 @@ msgstr "Le contenu actuel de l'article est vide. Un texte de substitution est af
 msgid "Api key not found"
 msgstr "Clé API non trouvée"
 
-#: lib/api/recommendations/bubble-chat.php:64
-#: lib/api/recommendations/bubble-chat.php:116
-msgid "Required plugin is missing"
-msgstr "Le plugin requis est manquant"
-
-#: lib/api/recommendations/bubble-chat.php:70
-#: lib/api/recommendations/bubble-chat.php:122
-msgid "Required class or functions are missing"
-msgstr "Classe ou fonctions requises manquantes"
-
-#: lib/api/recommendations/bubble-chat.php:93
-msgid "Kubio Widget"
-msgstr "Widget Kubio"
-
-#: lib/api/recommendations/bubble-chat.php:143
-msgid "Widget not found"
-msgstr "Widget non trouvé"
-
 #: lib/api/recommendations/contact-forms.php:47
 msgid "Contact Form plugin is not active!"
 msgstr "Le plugin de formulaire de contact n'est pas actif !"
@@ -978,6 +960,38 @@ msgstr "Au moins l'une des classes requises est manquante"
 #: lib/recommendations/contact-forms.php:80
 msgid "At least one of required functions is missing"
 msgstr "Au moins l'une des fonctions requises est manquante"
+
+#: lib/api/recommendations/siteleads.php:71
+#: lib/api/recommendations/siteleads.php:149
+#: lib/api/recommendations/siteleads.php:212
+msgid "Required plugin is missing"
+msgstr "Le plugin requis est manquant"
+
+#: lib/api/recommendations/siteleads.php:79
+#: lib/api/recommendations/siteleads.php:156
+#: lib/api/recommendations/siteleads.php:217
+msgid "Required class or functions are missing"
+msgstr "Classe ou fonctions requises manquantes"
+
+#: lib/api/recommendations/siteleads.php:88
+msgid "Invalid widget type."
+msgstr "Type de widget invalide."
+
+#: lib/api/recommendations/siteleads.php:168
+msgid "Invalid widget ID"
+msgstr "Identifiant de widget invalide"
+
+#: lib/api/recommendations/siteleads.php:173
+msgid "Invalid params format"
+msgstr "Format de paramètres invalide"
+
+#: lib/api/recommendations/siteleads.php:225
+msgid "Missing widgetId parameter."
+msgstr "Paramètre widgetId manquant."
+
+#: lib/api/recommendations/siteleads.php:232
+msgid "Missing enabled parameter."
+msgstr "Paramètre activé manquant."
 
 #: lib/api/subscribe-form.php:23
 msgid "Untitled form"

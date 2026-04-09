@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T11:43:29+02:00\n"
+"POT-Creation-Date: 2026-04-02T13:04:43+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language: \n"
 "X-Generator: WP-CLI 2.12.0\n"
@@ -918,24 +918,6 @@ msgstr "Current post content is empty. A placeholder text is displayed in the ed
 msgid "Api key not found"
 msgstr "API key not found"
 
-#: lib/api/recommendations/bubble-chat.php:64
-#: lib/api/recommendations/bubble-chat.php:116
-msgid "Required plugin is missing"
-msgstr "Required plugin is missing"
-
-#: lib/api/recommendations/bubble-chat.php:70
-#: lib/api/recommendations/bubble-chat.php:122
-msgid "Required class or functions are missing"
-msgstr "Required class or functions are missing"
-
-#: lib/api/recommendations/bubble-chat.php:93
-msgid "Kubio Widget"
-msgstr "Kubio Widget"
-
-#: lib/api/recommendations/bubble-chat.php:143
-msgid "Widget not found"
-msgstr "Widget not found"
-
 #: lib/api/recommendations/contact-forms.php:47
 msgid "Contact Form plugin is not active!"
 msgstr "Contact Form plugin is not active!"
@@ -978,6 +960,38 @@ msgstr "At least one of the required classes is missing"
 #: lib/recommendations/contact-forms.php:80
 msgid "At least one of required functions is missing"
 msgstr "At least one of the required functions is missing"
+
+#: lib/api/recommendations/siteleads.php:71
+#: lib/api/recommendations/siteleads.php:149
+#: lib/api/recommendations/siteleads.php:212
+msgid "Required plugin is missing"
+msgstr "Required plugin is missing"
+
+#: lib/api/recommendations/siteleads.php:79
+#: lib/api/recommendations/siteleads.php:156
+#: lib/api/recommendations/siteleads.php:217
+msgid "Required class or functions are missing"
+msgstr "Required class or functions are missing"
+
+#: lib/api/recommendations/siteleads.php:88
+msgid "Invalid widget type."
+msgstr "Invalid widget type."
+
+#: lib/api/recommendations/siteleads.php:168
+msgid "Invalid widget ID"
+msgstr "Invalid widget ID"
+
+#: lib/api/recommendations/siteleads.php:173
+msgid "Invalid params format"
+msgstr "Invalid params format"
+
+#: lib/api/recommendations/siteleads.php:225
+msgid "Missing widgetId parameter."
+msgstr "Missing widgetId parameter."
+
+#: lib/api/recommendations/siteleads.php:232
+msgid "Missing enabled parameter."
+msgstr "Missing enabled parameter."
 
 #: lib/api/subscribe-form.php:23
 msgid "Untitled form"
