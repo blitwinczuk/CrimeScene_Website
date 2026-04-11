@@ -1,0 +1,90 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+/*
+Element Description: VC Quiz Maker
+*/
+if( class_exists( 'WPBakeryShortCode' ) ) {
+    // Element Class
+    class vcQuizMaker extends WPBakeryShortCode {
+
+        function __construct() {
+            add_action( 'init', array( $this, 'vc_quizmaker_mapping' ) );
+            add_shortcode( 'vc_quizmaker', array( $this, 'vc_quizmaker_html' ) );
+        }
+
+        public function vc_quizmaker_mapping() {
+            // Stop all if VC is not enabled
+            if ( !defined( 'WPB_VC_VERSION' ) ) {
+                return;
+            }
+
+            // Map the block with vc_map()
+            vc_map(
+                array(
+                    'name'          => __('Quiz Maker', 'quiz-maker'),
+                    'base'          => 'vc_quizmaker',
+                    'description'   => __('The Best Quiz Maker Ever', 'quiz-maker'),
+                    'category'      => __('Quiz Maker by AYS', 'quiz-maker'),
+                    'icon'          => AYS_QUIZ_ADMIN_URL . '/images/icons/icon-128x128.png',
+                    'params'        => array(
+                        array(
+                            'type'          => 'dropdown',
+                            'holder'        => 'div',
+                            'class'         => 'quiz_vc_select',
+                            'heading'       => __( 'Quiz Maker', 'quiz-maker' ),
+                            'param_name'    => 'quiz',
+                            'value'         => $this->get_active_quizzes(),
+                            'description'   => __( 'Please select your quiz from dropdown', 'quiz-maker' ),
+                            'admin_label'   => true,
+                            'group'         => 'Quiz Maker'
+                        )
+                    )
+                )
+            );
+        }
+
+        public function vc_quizmaker_html( $atts ) {
+            // Get shortcode attributes safely
+            $atts = shortcode_atts(
+                array(
+                    'quiz' => '',
+                ),
+                $atts,
+                'vc_quizmaker'
+            );
+            
+            // Quiz ID must be numeric
+            $quiz_id = (isset( $atts['quiz'] ) && $atts['quiz'] != '') ? absint($atts['quiz']) : '';
+
+            // If invalid ID, return empty output
+            if ( empty( $quiz_id ) ) {
+                return '';
+            }
+
+            // Build shortcode safely
+            return do_shortcode(
+                sprintf(
+                    '[ays_quiz id="%d"]',
+                    $quiz_id
+                )
+            );
+        }
+
+        public function get_active_quizzes(){
+            global $wpdb;
+            $quizes_table = $wpdb->prefix . 'aysquiz_quizes';
+            $sql = "SELECT id,title FROM {$quizes_table} WHERE published=1;";
+            $results = $wpdb->get_results( $sql, ARRAY_A );
+            $options = array();
+            $options['Select Quiz'] = '';
+            foreach ( $results as $result ){
+                $options[$result['title']] = intval( $result['id'] );
+            }
+
+            return $options;
+        }
+    }
+
+    new vcQuizMaker();
+}
