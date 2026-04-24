@@ -2,7 +2,7 @@
 /*
 Plugin Name: Crime Scene Mini Game
 Description: Interactive crime scene mini game for WordPress.
-Version: 4.2
+Version: 5.3
 Author: CSI Team
 */
 
@@ -21,12 +21,15 @@ function crime_scene_game() {
                     <label for="room-select"><strong>Room:</strong></label>
                     <select id="room-select">
                         <option value="living-room">Living Room</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="bathroom">Bathroom</option>
                     </select>
                 </div>
 
                 <div class="stats">
                     <span>Score: <strong id="score">0</strong></span>
-                    <span>Collected: <strong id="collected-count">0</strong>/4</span>
+                    <span>Collected: <strong id="collected-count">0</strong>/<strong id="total-count">4</strong></span>
                 </div>
             </div>
         </div>
@@ -35,6 +38,8 @@ function crime_scene_game() {
             <div id="scene" class="living-room-scene">
                 <div class="wall"></div>
                 <div class="floor"></div>
+
+                <div class="room active" id="room-living-room" data-room="living-room">
 
                 <!-- Window -->
                 <div class="window interactive searchable"
@@ -204,6 +209,340 @@ function crime_scene_game() {
                      style="top: 53%; left: 88%;">
                     <div class="vase-body"></div>
                 </div>
+                </div>
+
+                <div class="room" id="room-kitchen" data-room="kitchen">
+                    <div class="kitchen-window interactive searchable"
+                         data-target="kitchen-window"
+                         data-label="Kitchen Window"
+                         data-message="You inspected the kitchen window. No evidence found.">
+                        <div class="kitchen-window-glass"></div>
+                        <div class="furniture-label">Window</div>
+                    </div>
+
+                    <div class="fridge interactive searchable"
+                         data-target="fridge"
+                         data-label="Fridge"
+                         data-message="You searched the fridge. No evidence found.">
+                        <div class="fridge-handle"></div>
+                        <div class="furniture-label">Fridge</div>
+                    </div>
+
+                    <div class="kitchen-counter interactive searchable"
+                         data-target="counter"
+                         data-label="Kitchen Counter"
+                         data-message="You searched the kitchen counter. Check around the sink and cutting area.">
+                        <div class="counter-top"></div>
+                        <div class="sink"></div>
+                        <div class="counter-cabinet cabinet-one"></div>
+                        <div class="counter-cabinet cabinet-two"></div>
+                        <div class="counter-cabinet cabinet-three"></div>
+                        <div class="furniture-label">Counter</div>
+                    </div>
+
+                    <div class="stove interactive searchable"
+                         data-target="stove"
+                         data-label="Stove"
+                         data-message="You inspected the stove area. No evidence found.">
+                        <div class="burner burner-one"></div>
+                        <div class="burner burner-two"></div>
+                        <div class="burner burner-three"></div>
+                        <div class="burner burner-four"></div>
+                        <div class="furniture-label">Stove</div>
+                    </div>
+
+                    <div class="kitchen-table interactive searchable"
+                         data-target="kitchen-table"
+                         data-label="Kitchen Table"
+                         data-message="You searched the kitchen table. Something may be relevant here.">
+                        <div class="table-top"></div>
+                        <div class="table-leg table-leg-one"></div>
+                        <div class="table-leg table-leg-two"></div>
+                        <div class="table-leg table-leg-three"></div>
+                        <div class="table-leg table-leg-four"></div>
+                        <div class="furniture-label">Kitchen Table</div>
+                    </div>
+
+                    <div class="trash-bin interactive searchable"
+                         data-target="trash-bin"
+                         data-label="Trash Bin"
+                         data-message="You searched the trash bin. Check for discarded items.">
+                        <div class="bin-lid"></div>
+                        <div class="bin-body"></div>
+                        <div class="furniture-label">Trash Bin</div>
+                    </div>
+
+                    <!-- Kitchen Evidence -->
+                    <div class="evidence hidden"
+                         data-name="Knife"
+                         data-description="A knife found on the kitchen table."
+                         data-foundin="kitchen-table"
+                         style="top: 66%; left: 46%;">
+                        🔪
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Broken Glass"
+                         data-description="Broken glass fragments found near the kitchen counter."
+                         data-foundin="counter"
+                         style="top: 58%; left: 63%;">
+                        🧩
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Receipt"
+                         data-description="A receipt hidden inside the counter cabinet."
+                         data-foundin="counter"
+                         style="top: 69%; left: 70%;">
+                        🧾
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Glove"
+                         data-description="A single glove found inside the trash bin."
+                         data-foundin="trash-bin"
+                         style="top: 76%; left: 84%;">
+                        🧤
+                    </div>
+
+                    <!-- Kitchen Distractors -->
+                    <div class="fake-item fake-apple"
+                         data-name="Apple"
+                         data-description="A normal apple. It is not relevant evidence."
+                         style="top: 64%; left: 53%;">
+                        🍎
+                    </div>
+
+                    <div class="fake-item fake-plate"
+                         data-name="Plate"
+                         data-description="A clean plate. It has no obvious evidential value."
+                         style="top: 56%; left: 56%;">
+                        🍽️
+                    </div>
+
+                    <div class="fake-item fake-mug"
+                         data-name="Mug"
+                         data-description="A regular mug. It does not appear to be relevant evidence."
+                         style="top: 57%; left: 73%;">
+                        ☕
+                    </div>
+                </div>
+
+                <div class="room" id="room-bedroom" data-room="bedroom">
+                    <div class="bedroom-window interactive searchable"
+                         data-target="bedroom-window"
+                         data-label="Bedroom Window"
+                         data-message="You inspected the bedroom window. No evidence found.">
+                        <div class="bedroom-window-glass"></div>
+                        <div class="furniture-label">Window</div>
+                    </div>
+
+                    <div class="bed interactive searchable"
+                         data-target="bed"
+                         data-label="Bed"
+                         data-message="You searched the bed. Check the pillow, blanket, and underneath.">
+                        <div class="bed-frame"></div>
+                        <div class="bed-mattress"></div>
+                        <div class="bed-pillow"></div>
+                        <div class="bed-blanket"></div>
+                        <div class="bed-leg bedroom-leg-one"></div>
+                        <div class="bed-leg bedroom-leg-two"></div>
+                        <div class="furniture-label">Bed</div>
+                    </div>
+
+                    <div class="nightstand interactive searchable"
+                         data-target="nightstand"
+                         data-label="Nightstand"
+                         data-message="You searched the nightstand drawer. Something may be hidden inside.">
+                        <div class="nightstand-drawer"></div>
+                        <div class="nightstand-handle"></div>
+                        <div class="furniture-label">Nightstand</div>
+                    </div>
+
+                    <div class="wardrobe-bedroom interactive searchable"
+                         data-target="bedroom-wardrobe"
+                         data-label="Wardrobe"
+                         data-message="You opened the wardrobe and checked inside.">
+                        <div class="wardrobe-bedroom-door wardrobe-left"></div>
+                        <div class="wardrobe-bedroom-door wardrobe-right"></div>
+                        <div class="wardrobe-bedroom-handle handle-left"></div>
+                        <div class="wardrobe-bedroom-handle handle-right"></div>
+                        <div class="furniture-label">Wardrobe</div>
+                    </div>
+
+                    <div class="dresser interactive searchable"
+                         data-target="dresser"
+                         data-label="Dresser"
+                         data-message="You searched the dresser drawers. No evidence found.">
+                        <div class="dresser-drawer drawer-one"></div>
+                        <div class="dresser-drawer drawer-two"></div>
+                        <div class="dresser-drawer drawer-three"></div>
+                        <div class="furniture-label">Dresser</div>
+                    </div>
+
+                    <div class="bedroom-rug interactive searchable"
+                         data-target="bedroom-rug"
+                         data-label="Rug"
+                         data-message="You lifted the rug and searched underneath.">
+                        <div class="rug-pattern"></div>
+                        <div class="furniture-label">Rug</div>
+                    </div>
+
+                    <!-- Bedroom Evidence -->
+                    <div class="evidence hidden"
+                         data-name="Blood Stain"
+                         data-description="A small blood stain found under the bed."
+                         data-foundin="bed"
+                         style="top: 73%; left: 39%;">
+                        🩸
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Missing Button"
+                         data-description="A torn button found inside the nightstand drawer."
+                         data-foundin="nightstand"
+                         style="top: 56%; left: 62%;">
+                        🔘
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Hidden Letter"
+                         data-description="A hidden letter found inside the wardrobe."
+                         data-foundin="bedroom-wardrobe"
+                         style="top: 39%; left: 81%;">
+                        ✉️
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Fabric Fibre"
+                         data-description="A small fibre sample found under the bedroom rug."
+                         data-foundin="bedroom-rug"
+                         style="top: 82%; left: 47%;">
+                        🧵
+                    </div>
+
+                    <!-- Bedroom Distractors -->
+                    <div class="fake-item fake-book"
+                         data-name="Magazine"
+                         data-description="A normal magazine. It is not relevant evidence."
+                         style="top: 49%; left: 57%;">
+                        📖
+                    </div>
+
+                    <div class="fake-item fake-vase"
+                         data-name="Perfume Bottle"
+                         data-description="A perfume bottle on the dresser. It is not relevant evidence."
+                         style="top: 45%; left: 24%;">
+                        🧴
+                    </div>
+                </div>
+
+                <div class="room" id="room-bathroom" data-room="bathroom">
+                    <div class="bathroom-window interactive searchable"
+                         data-target="bathroom-window"
+                         data-label="Bathroom Window"
+                         data-message="You inspected the bathroom window. No evidence found.">
+                        <div class="bathroom-window-glass"></div>
+                        <div class="furniture-label">Window</div>
+                    </div>
+
+                    <div class="sink-unit interactive searchable"
+                         data-target="sink"
+                         data-label="Sink"
+                         data-message="You searched the sink area and cabinet underneath.">
+                        <div class="mirror"></div>
+                        <div class="sink-basin"></div>
+                        <div class="tap"></div>
+                        <div class="sink-cabinet"></div>
+                        <div class="furniture-label">Sink</div>
+                    </div>
+
+                    <div class="toilet interactive searchable"
+                         data-target="toilet"
+                         data-label="Toilet"
+                         data-message="You inspected the toilet area. No evidence found.">
+                        <div class="toilet-tank"></div>
+                        <div class="toilet-bowl"></div>
+                        <div class="furniture-label">Toilet</div>
+                    </div>
+
+                    <div class="bathtub interactive searchable"
+                         data-target="bathtub"
+                         data-label="Bathtub"
+                         data-message="You searched the bathtub and drain area.">
+                        <div class="tub-body"></div>
+                        <div class="tub-inner"></div>
+                        <div class="shower-curtain"></div>
+                        <div class="furniture-label">Bathtub</div>
+                    </div>
+
+                    <div class="laundry-basket interactive searchable"
+                         data-target="laundry"
+                         data-label="Laundry Basket"
+                         data-message="You searched the laundry basket. Check clothing and towels.">
+                        <div class="basket-body"></div>
+                        <div class="basket-clothes"></div>
+                        <div class="furniture-label">Laundry Basket</div>
+                    </div>
+
+                    <div class="bathroom-cabinet interactive searchable"
+                         data-target="bathroom-cabinet"
+                         data-label="Medicine Cabinet"
+                         data-message="You opened the medicine cabinet and checked the shelves.">
+                        <div class="bathroom-cabinet-door"></div>
+                        <div class="cabinet-shelf shelf-one"></div>
+                        <div class="cabinet-shelf shelf-two"></div>
+                        <div class="furniture-label">Medicine Cabinet</div>
+                    </div>
+
+                    <!-- Bathroom Evidence -->
+                    <div class="evidence hidden"
+                         data-name="Hair Sample"
+                         data-description="A hair sample found near the sink."
+                         data-foundin="sink"
+                         style="top: 53%; left: 36%;">
+                        🧬
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Wet Towel"
+                         data-description="A wet towel found inside the laundry basket."
+                         data-foundin="laundry"
+                         style="top: 77%; left: 78%;">
+                        🧻
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Medicine Bottle"
+                         data-description="A medicine bottle found inside the bathroom cabinet."
+                         data-foundin="bathroom-cabinet"
+                         style="top: 35%; left: 72%;">
+                        💊
+                    </div>
+
+                    <div class="evidence hidden"
+                         data-name="Blood Trace"
+                         data-description="A small blood trace found near the bathtub drain."
+                         data-foundin="bathtub"
+                         style="top: 71%; left: 23%;">
+                        🩸
+                    </div>
+
+                    <!-- Bathroom Distractors -->
+                    <div class="fake-item fake-mug"
+                         data-name="Soap"
+                         data-description="A normal bar of soap. It is not relevant evidence."
+                         style="top: 57%; left: 42%;">
+                        🧼
+                    </div>
+
+                    <div class="fake-item fake-plate"
+                         data-name="Toothbrush"
+                         data-description="A toothbrush with no obvious evidential value."
+                         style="top: 43%; left: 31%;">
+                        🪥
+                    </div>
+                </div>
             </div>
 
             <div class="side-panel">
@@ -219,6 +558,11 @@ function crime_scene_game() {
                 </div>
 
                 <div id="status-message">Start by searching the living room.</div>
+
+                <h3>Inventory</h3>
+                <div id="inventory">
+                    <p class="inventory-empty">No evidence collected yet.</p>
+                </div>
 
                 <h3>Evidence Log</h3>
                 <ul id="log"></ul>
@@ -752,6 +1096,660 @@ function crime_scene_game() {
             position: absolute;
         }
 
+
+        .room {
+            position: absolute;
+            inset: 0;
+            display: none;
+        }
+
+        .room.active {
+            display: block;
+        }
+
+        /* Kitchen room */
+        .kitchen-window {
+            position: absolute;
+            top: 10%;
+            left: 40%;
+            width: 160px;
+            height: 100px;
+            background: #9edaf0;
+            border: 6px solid #4e7d84;
+            border-radius: 8px;
+        }
+
+        .kitchen-window-glass {
+            position: absolute;
+            inset: 8px;
+            background: linear-gradient(to bottom, #c9f4ff, #8cd0ec);
+            border-radius: 4px;
+        }
+
+        .kitchen-window-glass::before,
+        .kitchen-window-glass::after {
+            content: "";
+            position: absolute;
+            background: rgba(255,255,255,0.75);
+        }
+
+        .kitchen-window-glass::before {
+            width: 4px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .kitchen-window-glass::after {
+            height: 4px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .fridge {
+            position: absolute;
+            top: 28%;
+            left: 9%;
+            width: 130px;
+            height: 270px;
+            background: linear-gradient(to bottom, #f8fafc, #cbd5e1);
+            border: 4px solid #94a3b8;
+            border-radius: 12px;
+            box-shadow: 8px 12px 18px rgba(0,0,0,0.20);
+        }
+
+        .fridge::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 42%;
+            height: 4px;
+            background: #94a3b8;
+        }
+
+        .fridge-handle {
+            position: absolute;
+            top: 26px;
+            right: 14px;
+            width: 8px;
+            height: 86px;
+            background: #64748b;
+            border-radius: 8px;
+        }
+
+        .kitchen-counter {
+            position: absolute;
+            top: 48%;
+            left: 36%;
+            width: 360px;
+            height: 150px;
+        }
+
+        .counter-top {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 32px;
+            background: linear-gradient(to bottom, #e5e7eb, #bfc7d1);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+        }
+
+        .sink {
+            position: absolute;
+            top: 7px;
+            left: 40px;
+            width: 80px;
+            height: 20px;
+            background: #94a3b8;
+            border-radius: 50%;
+            border: 2px solid #64748b;
+        }
+
+        .counter-cabinet {
+            position: absolute;
+            top: 34px;
+            height: 96px;
+            width: 104px;
+            background: linear-gradient(to bottom, #8e4f17, #6f3e12);
+            border: 2px solid #5b3412;
+            border-radius: 4px;
+        }
+
+        .cabinet-one { left: 16px; }
+        .cabinet-two { left: 128px; }
+        .cabinet-three { left: 240px; }
+
+        .stove {
+            position: absolute;
+            top: 50%;
+            left: 72%;
+            width: 130px;
+            height: 100px;
+            background: linear-gradient(to bottom, #374151, #111827);
+            border-radius: 12px;
+            box-shadow: 6px 10px 16px rgba(0,0,0,0.22);
+        }
+
+        .burner {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border: 4px solid #9ca3af;
+            border-radius: 50%;
+        }
+
+        .burner-one { top: 18px; left: 22px; }
+        .burner-two { top: 18px; right: 22px; }
+        .burner-three { bottom: 18px; left: 22px; }
+        .burner-four { bottom: 18px; right: 22px; }
+
+        .kitchen-table {
+            position: absolute;
+            top: 66%;
+            left: 30%;
+            width: 260px;
+            height: 140px;
+        }
+
+        .table-top {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(to bottom, #b7791f, #8a5415);
+            border-radius: 50%;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.22);
+        }
+
+        .table-leg {
+            position: absolute;
+            top: 58px;
+            width: 12px;
+            height: 70px;
+            background: #5c3511;
+            border-radius: 4px;
+        }
+
+        .table-leg-one { left: 45px; }
+        .table-leg-two { left: 88px; }
+        .table-leg-three { right: 88px; }
+        .table-leg-four { right: 45px; }
+
+        .trash-bin {
+            position: absolute;
+            top: 68%;
+            right: 9%;
+            width: 82px;
+            height: 130px;
+        }
+
+        .bin-lid {
+            position: absolute;
+            top: 0;
+            left: 4px;
+            width: 74px;
+            height: 18px;
+            background: #374151;
+            border-radius: 10px 10px 4px 4px;
+        }
+
+        .bin-body {
+            position: absolute;
+            top: 18px;
+            left: 10px;
+            width: 62px;
+            height: 100px;
+            background: linear-gradient(to bottom, #4b5563, #1f2937);
+            border-radius: 6px 6px 16px 16px;
+        }
+
+
+        /* Bedroom room */
+        .bedroom-window {
+            position: absolute;
+            top: 9%;
+            left: 42%;
+            width: 145px;
+            height: 95px;
+            background: #9edaf0;
+            border: 6px solid #4e7d84;
+            border-radius: 8px;
+        }
+
+        .bedroom-window-glass {
+            position: absolute;
+            inset: 8px;
+            background: linear-gradient(to bottom, #c9f4ff, #8cd0ec);
+            border-radius: 4px;
+        }
+
+        .bedroom-window-glass::before,
+        .bedroom-window-glass::after {
+            content: "";
+            position: absolute;
+            background: rgba(255,255,255,0.75);
+        }
+
+        .bedroom-window-glass::before {
+            width: 4px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .bedroom-window-glass::after {
+            height: 4px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bed {
+            position: absolute;
+            top: 52%;
+            left: 22%;
+            width: 300px;
+            height: 160px;
+        }
+
+        .bed-frame {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, #6f4c33, #4f3422);
+            border-radius: 14px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.24);
+        }
+
+        .bed-mattress {
+            position: absolute;
+            top: 20px;
+            left: 18px;
+            width: 264px;
+            height: 80px;
+            background: linear-gradient(to bottom, #f8fafc, #d8dde3);
+            border-radius: 14px;
+        }
+
+        .bed-pillow {
+            position: absolute;
+            top: 30px;
+            left: 32px;
+            width: 86px;
+            height: 34px;
+            background: linear-gradient(to bottom, #ffffff, #e7ebef);
+            border-radius: 22px;
+        }
+
+        .bed-blanket {
+            position: absolute;
+            top: 48px;
+            left: 104px;
+            width: 160px;
+            height: 54px;
+            background: linear-gradient(to bottom, #2563eb, #1d4ed8);
+            border-radius: 16px 16px 22px 22px;
+        }
+
+        .bed-leg {
+            position: absolute;
+            bottom: -6px;
+            width: 12px;
+            height: 24px;
+            background: #4a3020;
+            border-radius: 3px;
+        }
+
+        .bedroom-leg-one { left: 18px; }
+        .bedroom-leg-two { right: 18px; }
+
+        .nightstand {
+            position: absolute;
+            top: 52%;
+            left: 58%;
+            width: 95px;
+            height: 105px;
+            background: linear-gradient(to bottom, #8e4f17, #6f3e12);
+            border-radius: 8px;
+            box-shadow: 6px 10px 16px rgba(0,0,0,0.22);
+        }
+
+        .nightstand-drawer {
+            position: absolute;
+            top: 16px;
+            left: 10px;
+            width: 75px;
+            height: 34px;
+            background: #a65f1c;
+            border: 2px solid #5b3412;
+            border-radius: 4px;
+        }
+
+        .nightstand-handle {
+            position: absolute;
+            top: 31px;
+            left: 41px;
+            width: 16px;
+            height: 5px;
+            background: #d7c08a;
+            border-radius: 6px;
+        }
+
+        .wardrobe-bedroom {
+            position: absolute;
+            top: 22%;
+            right: 7%;
+            width: 145px;
+            height: 275px;
+            background: linear-gradient(to bottom, #5d3b24, #70482a);
+            border-radius: 10px;
+            box-shadow: 8px 14px 22px rgba(0,0,0,0.28);
+        }
+
+        .wardrobe-bedroom-door {
+            position: absolute;
+            top: 8px;
+            width: 46%;
+            height: calc(100% - 16px);
+            background: linear-gradient(to bottom, #7a4d2b, #5c381f);
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 6px;
+        }
+
+        .wardrobe-left { left: 4px; }
+        .wardrobe-right { right: 4px; }
+
+        .wardrobe-bedroom-handle {
+            position: absolute;
+            top: 48%;
+            width: 7px;
+            height: 34px;
+            background: #d1b06b;
+            border-radius: 4px;
+        }
+
+        .handle-left { left: 60px; }
+        .handle-right { right: 60px; }
+
+        .dresser {
+            position: absolute;
+            top: 38%;
+            left: 8%;
+            width: 150px;
+            height: 145px;
+            background: linear-gradient(to bottom, #8e4f17, #6f3e12);
+            border-radius: 10px;
+            box-shadow: 6px 10px 16px rgba(0,0,0,0.22);
+        }
+
+        .dresser-drawer {
+            position: absolute;
+            left: 14px;
+            width: 122px;
+            height: 34px;
+            background: #a65f1c;
+            border: 2px solid #5b3412;
+            border-radius: 4px;
+        }
+
+        .drawer-one { top: 14px; }
+        .drawer-two { top: 55px; }
+        .drawer-three { top: 96px; }
+
+        .bedroom-rug {
+            position: absolute;
+            top: 79%;
+            left: 34%;
+            width: 340px;
+            height: 80px;
+            background: radial-gradient(circle at center, #334155, #1e293b);
+            border-radius: 50%;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.18);
+        }
+
+        .rug-pattern {
+            position: absolute;
+            inset: 12px 18px;
+            border: 3px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+        }
+
+        /* Bathroom room */
+        .bathroom-window {
+            position: absolute;
+            top: 9%;
+            left: 44%;
+            width: 135px;
+            height: 90px;
+            background: #9edaf0;
+            border: 6px solid #4e7d84;
+            border-radius: 8px;
+        }
+
+        .bathroom-window-glass {
+            position: absolute;
+            inset: 8px;
+            background: linear-gradient(to bottom, #c9f4ff, #8cd0ec);
+            border-radius: 4px;
+        }
+
+        .bathroom-window-glass::before,
+        .bathroom-window-glass::after {
+            content: "";
+            position: absolute;
+            background: rgba(255,255,255,0.75);
+        }
+
+        .bathroom-window-glass::before {
+            width: 4px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .bathroom-window-glass::after {
+            height: 4px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sink-unit {
+            position: absolute;
+            top: 30%;
+            left: 28%;
+            width: 170px;
+            height: 250px;
+        }
+
+        .mirror {
+            position: absolute;
+            top: 0;
+            left: 34px;
+            width: 100px;
+            height: 90px;
+            background: linear-gradient(135deg, #dff7ff, #9edaf0);
+            border: 6px solid #64748b;
+            border-radius: 10px;
+        }
+
+        .sink-basin {
+            position: absolute;
+            top: 112px;
+            left: 18px;
+            width: 134px;
+            height: 46px;
+            background: #f8fafc;
+            border: 4px solid #cbd5e1;
+            border-radius: 50%;
+        }
+
+        .tap {
+            position: absolute;
+            top: 95px;
+            left: 78px;
+            width: 16px;
+            height: 30px;
+            background: #64748b;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .sink-cabinet {
+            position: absolute;
+            top: 148px;
+            left: 28px;
+            width: 114px;
+            height: 82px;
+            background: linear-gradient(to bottom, #8e4f17, #6f3e12);
+            border-radius: 8px;
+            box-shadow: 6px 10px 16px rgba(0,0,0,0.18);
+        }
+
+        .toilet {
+            position: absolute;
+            top: 48%;
+            left: 57%;
+            width: 130px;
+            height: 160px;
+        }
+
+        .toilet-tank {
+            position: absolute;
+            top: 0;
+            left: 24px;
+            width: 82px;
+            height: 56px;
+            background: #f8fafc;
+            border: 4px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .toilet-bowl {
+            position: absolute;
+            top: 58px;
+            left: 16px;
+            width: 98px;
+            height: 82px;
+            background: #f8fafc;
+            border: 4px solid #cbd5e1;
+            border-radius: 50% 50% 18px 18px;
+        }
+
+        .bathtub {
+            position: absolute;
+            top: 62%;
+            left: 7%;
+            width: 260px;
+            height: 130px;
+        }
+
+        .tub-body {
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            height: 80px;
+            background: linear-gradient(to bottom, #f8fafc, #cbd5e1);
+            border-radius: 16px 16px 42px 42px;
+            border: 4px solid #94a3b8;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.20);
+        }
+
+        .tub-inner {
+            position: absolute;
+            bottom: 38px;
+            left: 28px;
+            width: 192px;
+            height: 30px;
+            background: #dff7ff;
+            border-radius: 50%;
+        }
+
+        .shower-curtain {
+            position: absolute;
+            top: 0;
+            right: 8px;
+            width: 70px;
+            height: 92px;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(147,197,253,0.95) 0px,
+                rgba(147,197,253,0.95) 10px,
+                rgba(219,234,254,0.95) 10px,
+                rgba(219,234,254,0.95) 20px
+            );
+            border-radius: 8px;
+        }
+
+        .laundry-basket {
+            position: absolute;
+            top: 66%;
+            right: 9%;
+            width: 110px;
+            height: 120px;
+        }
+
+        .basket-body {
+            position: absolute;
+            bottom: 0;
+            left: 12px;
+            width: 86px;
+            height: 94px;
+            background: linear-gradient(to bottom, #9ca3af, #64748b);
+            border-radius: 8px 8px 18px 18px;
+        }
+
+        .basket-clothes {
+            position: absolute;
+            top: 4px;
+            left: 22px;
+            width: 66px;
+            height: 34px;
+            background: radial-gradient(circle at 30% 50%, #ef4444 0 18px, transparent 19px),
+                        radial-gradient(circle at 70% 55%, #2563eb 0 18px, transparent 19px),
+                        radial-gradient(circle at 50% 30%, #f8fafc 0 18px, transparent 19px);
+        }
+
+        .bathroom-cabinet {
+            position: absolute;
+            top: 23%;
+            right: 12%;
+            width: 145px;
+            height: 180px;
+            background: linear-gradient(to bottom, #e5e7eb, #cbd5e1);
+            border: 4px solid #94a3b8;
+            border-radius: 10px;
+            box-shadow: 6px 10px 16px rgba(0,0,0,0.18);
+        }
+
+        .bathroom-cabinet-door {
+            position: absolute;
+            inset: 10px;
+            background: rgba(255,255,255,0.45);
+            border: 2px solid #94a3b8;
+            border-radius: 6px;
+        }
+
+        .cabinet-shelf {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            height: 5px;
+            background: #94a3b8;
+        }
+
+        .shelf-one { top: 65px; }
+        .shelf-two { top: 115px; }
+
         .side-panel {
             background: #f8fafc;
             border: 2px solid #dbe2ea;
@@ -805,6 +1803,47 @@ function crime_scene_game() {
             margin: 14px 0 20px;
         }
 
+        #inventory {
+            min-height: 72px;
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 10px 0 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .inventory-empty {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .inventory-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 14px;
+            font-weight: 700;
+            max-width: 100%;
+        }
+
+        .inventory-icon {
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .inventory-name {
+            overflow-wrap: anywhere;
+        }
+
         #log {
             padding-left: 20px;
             margin: 0;
@@ -839,24 +1878,20 @@ function crime_scene_game() {
             const statusMessage = document.getElementById('status-message');
             const scoreEl = document.getElementById('score');
             const collectedCountEl = document.getElementById('collected-count');
+            const totalCountEl = document.getElementById('total-count');
             const logEl = document.getElementById('log');
+            const inventoryEl = document.getElementById('inventory');
 
             let score = 0;
             let collectedCount = 0;
+            let totalEvidenceThisGame = 0;
             let selectedFurniture = null;
             let selectedItem = null;
 
-            function getSearchableObjects() {
-                return document.querySelectorAll('.searchable');
-            }
-
-            function getEvidenceItems() {
-                return document.querySelectorAll('.evidence');
-            }
-
-            function getFakeItems() {
-                return document.querySelectorAll('.fake-item');
-            }
+            function getActiveRoom() { return document.querySelector('.room.active'); }
+            function getAllRooms() { return document.querySelectorAll('.room'); }
+            function getAllSearchableObjects() { return document.querySelectorAll('.searchable'); }
+            function getAllGameItems() { return document.querySelectorAll('.evidence, .fake-item'); }
 
             function addLog(text) {
                 const li = document.createElement('li');
@@ -864,18 +1899,50 @@ function crime_scene_game() {
                 logEl.appendChild(li);
             }
 
+            function clearInventory() {
+                inventoryEl.innerHTML = '<p class="inventory-empty">No evidence collected yet.</p>';
+            }
+
+            function addToInventory(item) {
+                const emptyMessage = inventoryEl.querySelector('.inventory-empty');
+                if (emptyMessage) emptyMessage.remove();
+
+                const card = document.createElement('div');
+                card.className = 'inventory-card';
+
+                const icon = document.createElement('span');
+                icon.className = 'inventory-icon';
+                icon.textContent = item.textContent.trim();
+
+                const name = document.createElement('span');
+                name.className = 'inventory-name';
+                name.textContent = item.dataset.name;
+
+                const room = document.createElement('span');
+                room.className = 'inventory-room';
+                const roomElement = item.closest('.room');
+                const roomOption = [...roomSelect.options].find(option => 'room-' + option.value === roomElement.id);
+                room.textContent = roomOption ? roomOption.text : 'Unknown room';
+
+                card.appendChild(icon);
+                card.appendChild(name);
+                card.appendChild(room);
+                inventoryEl.appendChild(card);
+            }
+
             function updateStats() {
                 scoreEl.textContent = score;
                 collectedCountEl.textContent = collectedCount;
+                totalCountEl.textContent = totalEvidenceThisGame;
             }
 
             function clearFurnitureSelection() {
-                getSearchableObjects().forEach(obj => obj.classList.remove('selected-furniture'));
+                getAllSearchableObjects().forEach(obj => obj.classList.remove('selected-furniture'));
                 selectedFurniture = null;
             }
 
             function clearItemSelection() {
-                [...getEvidenceItems(), ...getFakeItems()].forEach(item => item.classList.remove('selected-ring'));
+                getAllGameItems().forEach(item => item.classList.remove('selected-ring'));
                 selectedItem = null;
                 collectButton.disabled = true;
             }
@@ -891,9 +1958,76 @@ function crime_scene_game() {
                 collectButton.disabled = true;
             }
 
+            function getSearchTargetsForRoom(room) {
+                return [...room.querySelectorAll('.searchable')].map(obj => obj.dataset.target).filter(Boolean);
+            }
+
+            function chooseRandomLocation(targets, noneChance) {
+                const options = [...targets, '__none'];
+                const noneWeight = Math.max(1, Math.round(targets.length * noneChance));
+                for (let i = 1; i < noneWeight; i++) options.push('__none');
+                return options[Math.floor(Math.random() * options.length)];
+            }
+
+            function positionItemNearTarget(item, targetObject) {
+                const room = targetObject.closest('.room');
+                const roomRect = room.getBoundingClientRect();
+                const targetRect = targetObject.getBoundingClientRect();
+                const centerX = ((targetRect.left + targetRect.width / 2) - roomRect.left) / roomRect.width * 100;
+                const centerY = ((targetRect.top + targetRect.height / 2) - roomRect.top) / roomRect.height * 100;
+                const finalX = Math.min(92, Math.max(8, centerX + (Math.random() * 10) - 5));
+                const finalY = Math.min(90, Math.max(10, centerY + (Math.random() * 8) - 4));
+                item.style.left = finalX + '%';
+                item.style.top = finalY + '%';
+            }
+
+            function randomiseHiddenItems() {
+                totalEvidenceThisGame = 0;
+
+                getAllRooms().forEach(room => {
+                    const targets = getSearchTargetsForRoom(room);
+                    const roomItems = room.querySelectorAll('.evidence, .fake-item');
+
+                    roomItems.forEach(item => {
+                        item.classList.remove('collected', 'selected-ring');
+                        item.style.display = 'none';
+
+                        const isEvidence = item.classList.contains('evidence');
+                        const noneChance = isEvidence ? 0.35 : 0.45;
+                        const location = chooseRandomLocation(targets, noneChance);
+
+                        item.dataset.foundin = location;
+                        item.dataset.active = location === '__none' ? 'false' : 'true';
+
+                        if (isEvidence && location !== '__none') totalEvidenceThisGame += 1;
+                    });
+                });
+            }
+
+            function startNewGame() {
+                score = 0;
+                collectedCount = 0;
+                selectedFurniture = null;
+                selectedItem = null;
+
+                clearFurnitureSelection();
+                clearItemSelection();
+                clearInventory();
+                getAllSearchableObjects().forEach(obj => obj.classList.remove('open'));
+                randomiseHiddenItems();
+
+                logEl.innerHTML = '';
+                resetPanel();
+                updateStats();
+                statusMessage.textContent = 'New investigation started. Search each room to find evidence.';
+                addLog('New investigation started. Hidden items have been randomised.');
+            }
+
             function bindFurnitureEvents() {
-                getSearchableObjects().forEach(obj => {
+                getAllSearchableObjects().forEach(obj => {
                     obj.addEventListener('click', function() {
+                        if (!this.closest('.room').classList.contains('active')) return;
+
                         clearFurnitureSelection();
                         clearItemSelection();
 
@@ -909,9 +2043,10 @@ function crime_scene_game() {
                 });
             }
 
-            function bindEvidenceEvents() {
-                getEvidenceItems().forEach(item => {
+            function bindItemEvents() {
+                getAllGameItems().forEach(item => {
                     item.addEventListener('click', function() {
+                        if (!this.closest('.room').classList.contains('active')) return;
                         if (this.classList.contains('collected')) return;
 
                         clearItemSelection();
@@ -919,28 +2054,14 @@ function crime_scene_game() {
 
                         this.classList.add('selected-ring');
                         selectedItem = this;
-
                         setPanel(this.dataset.name, this.dataset.description);
-                        statusMessage.textContent = 'Evidence selected. Press "Collect Evidence" to store it.';
-                        collectButton.disabled = false;
-                        searchButton.disabled = true;
-                    });
-                });
-            }
 
-            function bindFakeItemEvents() {
-                getFakeItems().forEach(item => {
-                    item.addEventListener('click', function() {
-                        if (this.classList.contains('collected')) return;
+                        if (this.classList.contains('evidence')) {
+                            statusMessage.textContent = 'Evidence selected. Press "Collect Evidence" to store it.';
+                        } else {
+                            statusMessage.textContent = 'Item selected. Press "Collect Evidence" to analyze it.';
+                        }
 
-                        clearItemSelection();
-                        clearFurnitureSelection();
-
-                        this.classList.add('selected-ring');
-                        selectedItem = this;
-
-                        setPanel(this.dataset.name, this.dataset.description);
-                        statusMessage.textContent = 'Item selected. Press "Collect Evidence" to analyze it.';
                         collectButton.disabled = false;
                         searchButton.disabled = true;
                     });
@@ -956,15 +2077,24 @@ function crime_scene_game() {
 
                 selectedFurniture.classList.add('open');
 
-                const evidenceFound = document.querySelectorAll('.evidence[data-foundin="' + target + '"]');
-                evidenceFound.forEach(item => {
+                const hiddenItems = getActiveRoom().querySelectorAll('.evidence[data-foundin="' + target + '"], .fake-item[data-foundin="' + target + '"]');
+                let foundVisibleItem = false;
+
+                hiddenItems.forEach(item => {
                     if (!item.classList.contains('collected')) {
+                        positionItemNearTarget(item, selectedFurniture);
                         item.style.display = 'flex';
+                        foundVisibleItem = true;
                     }
                 });
 
-                statusMessage.textContent = message;
-                addLog('Searched: ' + label);
+                if (foundVisibleItem) {
+                    statusMessage.textContent = message;
+                    addLog('Searched: ' + label);
+                } else {
+                    statusMessage.textContent = 'You searched ' + label + '. No evidence found.';
+                    addLog('No evidence found: ' + label);
+                }
             });
 
             collectButton.addEventListener('click', function() {
@@ -977,18 +2107,17 @@ function crime_scene_game() {
                 if (selectedItem.classList.contains('evidence')) {
                     score += 10;
                     collectedCount += 1;
-
                     addLog('Collected evidence: ' + selectedItem.dataset.name);
+                    addToInventory(selectedItem);
                     statusMessage.textContent = 'Evidence collected: ' + selectedItem.dataset.name;
-                    setPanel(selectedItem.dataset.name, 'This evidence has been collected and added to the log.');
+                    setPanel(selectedItem.dataset.name, 'This evidence has been collected and added to the inventory.');
 
-                    if (collectedCount === 4) {
-                        statusMessage.textContent = 'Case complete. All evidence has been collected in the living room.';
-                        addLog('Case complete: all evidence collected.');
+                    if (collectedCount === totalEvidenceThisGame) {
+                        statusMessage.textContent = 'Investigation complete. All active evidence has been collected across all rooms.';
+                        addLog('Investigation complete: all active evidence collected.');
                     }
                 } else if (selectedItem.classList.contains('fake-item')) {
                     score -= 5;
-
                     addLog('Non-evidence item: ' + selectedItem.dataset.name);
                     statusMessage.textContent = selectedItem.dataset.name + ' is not valid evidence.';
                     setPanel(selectedItem.dataset.name, 'This item is not relevant to the investigation.');
@@ -1000,40 +2129,25 @@ function crime_scene_game() {
             });
 
             resetButton.addEventListener('click', function() {
-                score = 0;
-                collectedCount = 0;
-                updateStats();
-
-                clearFurnitureSelection();
-                clearItemSelection();
-
-                getSearchableObjects().forEach(obj => obj.classList.remove('open'));
-
-                getEvidenceItems().forEach(item => {
-                    item.classList.remove('collected', 'selected-ring');
-                    item.style.display = 'none';
-                });
-
-                getFakeItems().forEach(item => {
-                    item.classList.remove('collected', 'selected-ring');
-                });
-
-                logEl.innerHTML = '';
-                statusMessage.textContent = 'Game reset. Start by searching the living room.';
-                resetPanel();
+                startNewGame();
             });
 
             roomSelect.addEventListener('change', function() {
-                resetButton.click();
-                statusMessage.textContent = 'Room loaded: Living Room. Start by searching the room.';
-                addLog('Room selected: Living Room');
+                document.querySelectorAll('.room').forEach(room => room.classList.remove('active'));
+                document.getElementById('room-' + this.value).classList.add('active');
+
+                clearFurnitureSelection();
+                clearItemSelection();
+                resetPanel();
+                updateStats();
+
+                statusMessage.textContent = 'Room changed to ' + this.options[this.selectedIndex].text + '. Continue the investigation.';
+                addLog('Moved to room: ' + this.options[this.selectedIndex].text);
             });
 
             bindFurnitureEvents();
-            bindEvidenceEvents();
-            bindFakeItemEvents();
-            updateStats();
-            resetPanel();
+            bindItemEvents();
+            startNewGame();
         })();
     </script>
     <?php
