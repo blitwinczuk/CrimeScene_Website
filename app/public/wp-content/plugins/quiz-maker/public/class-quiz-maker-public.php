@@ -259,19 +259,19 @@ class Quiz_Maker_Public
             $settings_buttons_texts = array();
         }
 
-        $ays_start_button           = (isset($settings_buttons_texts['start_button']) && $settings_buttons_texts['start_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['start_button'] ) ) : 'Start' ;
-        $ays_next_button            = (isset($settings_buttons_texts['next_button']) && $settings_buttons_texts['next_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['next_button'] ) ) : 'Next' ;
-        $ays_previous_button        = (isset($settings_buttons_texts['previous_button']) && $settings_buttons_texts['previous_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['previous_button'] ) ) : 'Prev' ;
-        $ays_clear_button           = (isset($settings_buttons_texts['clear_button']) && $settings_buttons_texts['clear_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['clear_button'] ) ) : 'Clear' ;
-        $ays_finish_button          = (isset($settings_buttons_texts['finish_button']) && $settings_buttons_texts['finish_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['finish_button'] ) ) : 'Finish' ;
-        $ays_see_result_button      = (isset($settings_buttons_texts['see_result_button']) && $settings_buttons_texts['see_result_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['see_result_button'] ) ) : 'See Result' ;
-        $ays_restart_quiz_button    = (isset($settings_buttons_texts['restart_quiz_button']) && $settings_buttons_texts['restart_quiz_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['restart_quiz_button'] ) ) : 'Restart quiz' ;
-        $ays_send_feedback_button   = (isset($settings_buttons_texts['send_feedback_button']) && $settings_buttons_texts['send_feedback_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['send_feedback_button'] ) ) : 'Send feedback' ;
-        $ays_load_more_button       = (isset($settings_buttons_texts['load_more_button']) && $settings_buttons_texts['load_more_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['load_more_button'] ) ) : 'Load more' ;
-        $ays_exit_button            = (isset($settings_buttons_texts['exit_button']) && $settings_buttons_texts['exit_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['exit_button'] ) ) : 'Exit' ;
-        $ays_check_button           = (isset($settings_buttons_texts['check_button']) && $settings_buttons_texts['check_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['check_button'] ) ) : 'Check' ;
-        $ays_login_button           = (isset($settings_buttons_texts['login_button']) && $settings_buttons_texts['login_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['login_button'] ) ) : 'Log In' ;
-
+        $ays_start_button           = (isset($settings_buttons_texts['start_button']) && $settings_buttons_texts['start_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['start_button'] ) ) : 'Start';
+        $ays_next_button            = (isset($settings_buttons_texts['next_button']) && $settings_buttons_texts['next_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['next_button'] ) ) : 'Next';
+        $ays_previous_button        = (isset($settings_buttons_texts['previous_button']) && $settings_buttons_texts['previous_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['previous_button'] ) ) : 'Prev';
+        $ays_clear_button           = (isset($settings_buttons_texts['clear_button']) && $settings_buttons_texts['clear_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['clear_button'] ) ) : 'Clear';
+        $ays_finish_button          = (isset($settings_buttons_texts['finish_button']) && $settings_buttons_texts['finish_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['finish_button'] ) ) : 'Finish';
+        $ays_see_result_button      = (isset($settings_buttons_texts['see_result_button']) && $settings_buttons_texts['see_result_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['see_result_button'] ) ) : 'See Result';
+        $ays_restart_quiz_button    = (isset($settings_buttons_texts['restart_quiz_button']) && $settings_buttons_texts['restart_quiz_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['restart_quiz_button'] ) ) : 'Restart quiz';
+        $ays_send_feedback_button   = (isset($settings_buttons_texts['send_feedback_button']) && $settings_buttons_texts['send_feedback_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['send_feedback_button'] ) ) : 'Send feedback';
+        $ays_load_more_button       = (isset($settings_buttons_texts['load_more_button']) && $settings_buttons_texts['load_more_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['load_more_button'] ) ) : 'Load more';
+        $ays_exit_button            = (isset($settings_buttons_texts['exit_button']) && $settings_buttons_texts['exit_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['exit_button'] ) ) : 'Exit';
+        $ays_check_button           = (isset($settings_buttons_texts['check_button']) && $settings_buttons_texts['check_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['check_button'] ) ) : 'Check';
+        $ays_login_button           = (isset($settings_buttons_texts['login_button']) && $settings_buttons_texts['login_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['login_button'] ) ) : 'Log In';
+        $ays_report_submit_button = (isset($settings_buttons_texts['report_submit_button']) && $settings_buttons_texts['report_submit_button'] != '') ? stripslashes( esc_attr( $settings_buttons_texts['report_submit_button'] ) ) : 'Submit';
 
         //////////////////////////
         //////////////////////////
@@ -361,6 +361,12 @@ class Quiz_Maker_Public
             $ays_login_button_text = __('Log In', 'quiz-maker');
         }else{
             $ays_login_button_text = $ays_login_button;
+        }
+
+        if ($ays_report_submit_button === 'Submit') {
+            $ays_report_submit_button_text = __('Submit', 'quiz-maker');
+        }else{
+            $ays_report_submit_button_text = $ays_report_submit_button;
         }
 
         ////////////////////////////////////////////
@@ -455,6 +461,7 @@ class Quiz_Maker_Public
             'exitButton'            => $ays_exit_button_text,
             'checkButton'           => $ays_check_button_text,
             'loginButton'           => $ays_login_button_text,
+            'reportSubmitButton'    => $ays_report_submit_button_text,
         );
         return $texts;
     }
@@ -703,6 +710,7 @@ class Quiz_Maker_Public
         $whats_wrong_report_question_text  = (isset($settings_static_texts['whats_wrong_report_question_text']) && $settings_static_texts['whats_wrong_report_question_text'] != '') ? stripslashes( esc_attr( $settings_static_texts['whats_wrong_report_question_text'] ) ) : 'What’s wrong with this question?';
 
         $question_report_submitted_text  = (isset($settings_static_texts['question_report_submitted_text']) && $settings_static_texts['question_report_submitted_text'] != '') ? stripslashes( esc_attr( $settings_static_texts['question_report_submitted_text'] ) ) : 'Report has been submitted successfully';
+        $empty_report_text  = (isset($settings_static_texts['empty_report_text']) && $settings_static_texts['empty_report_text'] != '') ? stripslashes( esc_attr( $settings_static_texts['empty_report_text'] ) ) : 'You cannot submit an empty report. Please add some details.';
 
         if ($wrong_shortcode_text === 'Wrong shortcode initialized') {
             $wrong_shortcode_text = __('Wrong shortcode initialized', 'quiz-maker');
@@ -748,6 +756,10 @@ class Quiz_Maker_Public
             $question_report_submitted_text = __('Report has been submitted successfully', 'quiz-maker');
         }
 
+        if ($empty_report_text === 'You cannot submit an empty report. Please add some details.') {
+            $empty_report_text = __('You cannot submit an empty report. Please add some details.', 'quiz-maker');
+        }
+
         $texts = array(
             'wrongShortcode'                => $wrong_shortcode_text,
             'enterPassword'                 => $enter_password_text,
@@ -760,6 +772,7 @@ class Quiz_Maker_Public
             'reportQuestionText'            => $report_question_text,
             'whatsWrongReportQuestionText'  => $whats_wrong_report_question_text,
             'questionReportSubmittedText'   => $question_report_submitted_text,
+            'emptyReportText'               => $empty_report_text,
         );
 
         return $texts;
@@ -2210,11 +2223,13 @@ class Quiz_Maker_Public
                                                 <form id="ays-quiz-question-report-form">
                                                     <label class="ays-quiz-question-report-textarea-label" for="ays-quiz-question-report-textarea">' . esc_html($this->default_texts['whatsWrongReportQuestionText']) . '</label>
                                                     <textarea id="ays-quiz-question-report-textarea" name="ays-quiz-question-report-textarea"></textarea>
-                                                    <div class="ays-quiz-question-report-error">' . __( "You cannot submit an empty report. Please add some details.", 'quiz-maker' ) . '</div>
+                                                    <div class="ays-quiz-question-report-error">' . esc_html($this->default_texts['emptyReportText']) . '</div>
                                                     <input type="hidden" class="ays-quiz-report-question-id" value="">
                                                     <input type="hidden" class="ays-quiz-report-quiz-id" value="' . $id . '">
                                                     <input type="hidden" class="ays-quiz-report-question-send-email" value="' . $send_email . '">
-                                                    <input type="submit" class="ays-quiz-submit-question-report" value="'. __("Submit", 'quiz-maker') .'">
+                                                    <div class="ays-quiz-submit-question-report-box">
+                                                        <input type="submit" class="ays-quiz-submit-question-report" value="'. $this->buttons_texts['reportSubmitButton'] .'">
+                                                    </div>
                                                     <input type="hidden" class="ays_quiz_question_report_nonce" name="ays_quiz_question_report_nonce" value="'. esc_attr( wp_create_nonce( 'ays_quiz_question_report_nonce' ) ) .'">
 
                                                 </form>
@@ -3478,6 +3493,8 @@ class Quiz_Maker_Public
                 break;
         }
 
+        $quiz_theme_type = isset($options['quiz_theme']) && $options['quiz_theme'] != "" ? esc_attr( stripslashes($options['quiz_theme']) ) : "";
+
         if($show_form != null){
             if ($options['information_form'] == "after") {
                 $main_content_last_part = "<div class='step'>
@@ -3917,6 +3934,14 @@ class Quiz_Maker_Public
                 background-color: " . $this->hex2rgba($text_color, '0.3') . ";
             }";
 
+        if( $quiz_theme_type == 'elegant_dark' || $quiz_theme_type == 'elegant_light' ){
+            $quiz_styles .= "
+            #ays-quiz-container-" . $id . " #ays_finish_quiz_" . $id . " .ays-progress-bg,
+            #ays-quiz-container-" . $id . " #ays_finish_quiz_" . $id . " .ays-progress-bg {
+                border: 1px solid " . $this->hex2rgba($text_color, '0.3') . ";
+            }";
+        }
+
         if ($enable_live_progress_bar) {
             $quiz_styles .= "
             #ays-quiz-container-" . $id . " ." . $filling_type . " {
@@ -4156,6 +4181,14 @@ class Quiz_Maker_Public
                         font-size: " . $buttons_font_size . " !important;
                         padding: " . $buttons_top_bottom_padding . " " . $buttons_left_right_padding . " !important;
                         border-radius: " . $buttons_border_radius . " !important;
+                    }";
+                }
+
+                if( 'Colibri WP' == $current_user_theme_obj->name || 'Colibri WP' == $current_user_theme_obj->parent_theme ) {
+                    $quiz_styles .= "
+                    .ays-quiz-question-report-popup-container.swal2-popup .swal2-icon {
+                        width: 88px;
+                        height: 88px;
                     }";
                 }
             }
@@ -7638,48 +7671,60 @@ class Quiz_Maker_Public
     
     protected function ays_get_full_reasons_of_rates($start, $limit, $quiz_id, $zuyga){
         $quiz_rate_reasons = $this->ays_get_reasons_of_rates($start, $limit, $quiz_id);
-        $quiz_rate_html = "";
+        $quiz_rate_html = '';
+
         foreach($quiz_rate_reasons as $key => $reasons){
-            $user_name = !empty($reasons['user_name']) ? "<span>".$reasons['user_name']."</span>" : '';
-            if($this->isJSON($reasons['options'])){
-                $reason = json_decode($reasons['options'], true)['reason'];
-            }elseif($reasons['options'] != ''){
-                $reason = $reasons['options'];
-            }else{
-                $reason = $reasons['review'];                
+
+            $user_name = ! empty( $reasons['user_name'] ) ? '<span>' . esc_html( $reasons['user_name'] ) . '</span>' : '';
+
+            if ( $this->isJSON( $reasons['options'] ) ) {
+                $options = json_decode( $reasons['options'], true );
+                $reason  = isset( $options['reason'] ) ? (string) $options['reason'] : '';
+            } elseif ( ! empty( $reasons['options'] ) ) {
+                $reason = (string) $reasons['options'];
+            } else {
+                $reason = isset( $reasons['review'] ) ? (string) $reasons['review'] : '';
             }
-            if(intval($reasons['user_id']) != 0){
-                $user_img = esc_url( get_avatar_url( intval($reasons['user_id']) ) );
-            }else{
-                $user_img = AYS_QUIZ_PUBLIC_URL . "/images/avatar_2x.png";
+
+            if ( intval( $reasons['user_id'] ) !== 0 ) {
+                $user_img = esc_url( get_avatar_url( intval( $reasons['user_id'] ) ) );
+            } else {
+                $user_img = esc_url( AYS_QUIZ_PUBLIC_URL . '/images/avatar_2x.png' );
             }
-            $score = $reasons['score'];
-            $commented = date('M j, Y', strtotime($reasons['rate_date']));
-            if($zuyga == 1){
-                $row_reverse = ($key % 2 == 0) ? 'row_reverse' : '';
-            }else{
-                $row_reverse = ($key % 2 == 0) ? '' : 'row_reverse';
+
+            $score     = absint( $reasons['score'] );
+            $commented = esc_html( date_i18n( 'M j, Y', strtotime( $reasons['rate_date'] ) ) );
+
+            if ( $zuyga == 1 ) {
+                $row_reverse = ( $key % 2 == 0 ) ? 'row_reverse' : '';
+            } else {
+                $row_reverse = ( $key % 2 == 0 ) ? '' : 'row_reverse';
             }
-            $quiz_rate_html .= "<div class='quiz_rate_reasons'>
-                  <div class='rate_comment_row $row_reverse'>
-                    <div class='rate_comment_user'>
-                        <div class='thumbnail'>
-                            <img class='img-responsive user-photo' src='".$user_img."'>
-                        </div>
-                    </div>
-                    <div class='rate_comment'>
-                        <div class='panel panel-default'>
-                            <div class='panel-heading'>
-                                <i class='ays_fa ays_fa_user'></i> <strong>$user_name</strong><br/>
-                                <i class='ays_fa ays_fa_clock_o'></i> $commented<br/>
-                                ".__("Rated", 'quiz-maker')." <i class='ays_fa ays_fa_star'></i> $score
+
+            $quiz_rate_html .= "
+                <div class='quiz_rate_reasons'>
+                    <div class='rate_comment_row " . esc_attr( $row_reverse ) . "'>
+                        <div class='rate_comment_user'>
+                            <div class='thumbnail'>
+                                <img class='img-responsive user-photo' src='" . esc_url( $user_img ) . "' alt=''>
                             </div>
-                            <div class='panel-body'><div>". stripslashes(nl2br($reason)) ."</div></div>
+                        </div>
+                        <div class='rate_comment'>
+                            <div class='panel panel-default'>
+                                <div class='panel-heading'>
+                                    <i class='ays_fa ays_fa_user'></i> <strong>" . $user_name . "</strong><br/>
+                                    <i class='ays_fa ays_fa_clock_o'></i> " . $commented . "<br/>
+                                    " . esc_html__( 'Rated', 'quiz-maker' ) . " <i class='ays_fa ays_fa_star'></i> " . esc_html( $score ) . "
+                                </div>
+                                <div class='panel-body'>
+                                    <div>" . nl2br( esc_html( $reason ) ) . "</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>";
+                </div>";
         }
+
         return $quiz_rate_html;
     }
     
@@ -7893,7 +7938,8 @@ class Quiz_Maker_Public
         $user_phone = isset($_REQUEST['ays_user_phone']) ? esc_sql( sanitize_text_field( $_REQUEST['ays_user_phone'] ) ) : '';
         $score = (isset($_REQUEST['rate_score']) && $_REQUEST['rate_score'] != "") ? esc_sql( absint( sanitize_text_field( $_REQUEST['rate_score'] ) ) ) : 5;
         $rate_date = current_time('mysql'); // For Security // esc_sql( sanitize_text_field( $_REQUEST['rate_date'] ) );
-        $rate_reason = (isset($_REQUEST['rate_reason']) && $_REQUEST['rate_reason'] != "") ? stripslashes( sanitize_textarea_field( $_REQUEST['rate_reason'] ) ) : '';
+        // $rate_reason = (isset($_REQUEST['rate_reason']) && $_REQUEST['rate_reason'] != "") ? stripslashes( sanitize_textarea_field( $_REQUEST['rate_reason'] ) ) : '';
+        $rate_reason = isset($_REQUEST['rate_reason']) ? sanitize_textarea_field( wp_unslash( $_REQUEST['rate_reason'] ) ) : '';
 
         switch ($score) {
             case "1":

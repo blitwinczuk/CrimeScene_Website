@@ -1,10 +1,10 @@
-=== Quiz Maker ===
+=== Quiz Maker by AYS ===
 Contributors: ays-pro
 Donate link: https://ays-pro.com/wordpress/quiz-maker
 Tags:  exam, quiz, quizzes, education, quiz maker
 Requires at least: 4.0
 Tested up to: 7.0
-Stable tag: 6.7.1.25
+Stable tag: 6.7.1.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -419,6 +419,28 @@ Do you wonder how to create a Math Quiz with hard mathematical equations in Word
 For example, to add a squared symbol, you need to write down the following sign ^2. (do not forget to insert $ character to mark the beginning and ending).
 
 == Changelog ==
+
+= 6.7.1.31 ( Apr 27, 2026 ) =
+* Improved: CSS issue with the Elegant Light/Dark quiz theme on the front end
+* Improved: Report question popup style conflicts with some WordPress themes
+
+= 6.7.1.30 ( Apr 22, 2026 ) =
+* Improved: Handling and rendering of user-submitted review data
+* Fixed: Review display inconsistencies in quiz results and reviews list
+
+= 6.7.1.29 ( Apr 20, 2026 ) =
+* Added: FAQ section on the dashboard page
+* Improved: Dashboard page enhancements
+* Updated: POT file
+
+= 6.7.1.28 ( Apr 17, 2026 ) =
+* Added: Report submit button text customization option in General Settings
+
+= 6.7.1.27 ( Apr 15, 2026 ) =
+* Added: Text decoration option for wrong answers in the Quick Quiz popup
+
+= 6.7.1.26 ( Apr 13, 2026 ) =
+* Added: Default text customization option for the "Empty Report message text"
 
 = 6.7.1.25 ( Apr 09, 2026 ) =
 * Added: Text transformation option for wrong answers in the Quick Quiz popup

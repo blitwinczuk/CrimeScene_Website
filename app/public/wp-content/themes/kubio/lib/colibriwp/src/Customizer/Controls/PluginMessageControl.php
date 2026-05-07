@@ -7,6 +7,7 @@ use ColibriWP\Theme\Core\Hooks;
 use ColibriWP\Theme\PluginsManager;
 use ColibriWP\Theme\Theme;
 use ColibriWP\Theme\Translations;
+use KubioTheme\SiteLeadsThemeKit\SiteLeads;
 
 class PluginMessageControl extends VueControl {
 
@@ -21,14 +22,14 @@ class PluginMessageControl extends VueControl {
 			<button class="el-button el-button--icon el-button--text colibri-plugin-message-close">
 				<i class="el-icon-close"></i>
 			</button>
-			<p>
-				<?php echo Translations::get( 'plugin_message', 'Kubio Page Builder' ); ?>
-			</p>
+
+            <?php echo SiteLeads::getInstallCompanioNoticeDescriptionInCustomizerWithSiteLeadsCheck();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+
 			<?php if ( Theme::getInstance()->getPluginsManager()->getPluginState( $this->getBuilderSlug() ) === PluginsManager::NOT_INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="install"
 						class="el-button el-link h-col el-button--primary el-button--small"
 						style="text-decoration: none">
-					<?php echo Translations::get( 'install_with_placeholder', 'Kubio Page Builder' ); ?>
+                    <?php echo SiteLeads::getInstallCompanionButtonLabelWithSiteLeadsCheck();// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>
 			<?php endif; ?>
 
@@ -36,11 +37,11 @@ class PluginMessageControl extends VueControl {
 				<button data-colibri-plugin-action="activate"
 						class="el-button el-link h-col el-button--primary el-button--small"
 						style="text-decoration: none">
-					<?php echo Translations::get( 'activate_with_placeholder', 'Kubio Page Builder' ); ?>
+                    <?php echo SiteLeads::getActivateCompanionButtonLabelWithSiteLeadsCheck(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>
 			<?php endif; ?>
 
-			<p class="notice notice-large" data-colibri-plugin-action-message="1" style="display: none"></p>
+			<p class="kubio-notice notice notice-large" data-colibri-plugin-action-message="1" style="display: none"></p>
 		</div>
 		<?php
 	}

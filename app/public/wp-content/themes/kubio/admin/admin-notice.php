@@ -2,6 +2,7 @@
 
 use ColibriWP\Theme\Translations;
 use Kubio\Theme\Theme;
+use KubioTheme\SiteLeadsThemeKit\SiteLeads;
 
 wp_localize_script(
 	get_template() . '-page-info',
@@ -84,9 +85,7 @@ wp_localize_script(
                         </div>
                     </div>
                     <div>
-                        <p class="description large-text">
-                            <?php echo Translations::get( 'start_with_a_front_page_plugin_info', 'Kubio' ); ?>
-                        </p>
+                        <?php echo SiteLeads::getInstallCompanioNoticeDescriptionInWPAdminWithSiteLeadsCheck() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
                     </div>
                 </div>
             </div>

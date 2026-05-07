@@ -6,7 +6,7 @@ use ColibriWP\Theme\PluginsManager;
 use ColibriWP\Theme\Theme;
 use ColibriWP\Theme\Translations;
 use TGM_Plugin_Activation;
-
+use KubioTheme\SiteLeadsThemeKit\SiteLeads;
 const PRO = '-pro';
 
 class EnableKubioInCustomizerPanel extends \WP_Customize_Panel {
@@ -136,20 +136,18 @@ class EnableKubioInCustomizerPanel extends \WP_Customize_Panel {
 
 	protected function render() {
 
-		$message = Translations::get('plugin_message', 'Kubio Page Builder');
-		
 		?>
 		<li class="accordion-section kubio-customizer-panel">
 		<?php if ( $this->getPluginState( $this->plugin_slug ) !== PluginsManager::ACTIVE_PLUGIN ) : ?>
 			<div class="accordion-section-title">
-				<p><?php echo esc_html( $message ); ?></p>
-			<?php if ( $this->getPluginState( $this->plugin_slug ) === PluginsManager::NOT_INSTALLED_PLUGIN ) : ?>
+                <?php echo SiteLeads::getInstallCompanioNoticeDescriptionSectionListInCustomizerWithSiteLeadsCheck(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php if ( $this->getPluginState( $this->plugin_slug ) === PluginsManager::NOT_INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="install" data-source="customizer-sidebar" class="button button-primary kubio-open-editor-panel-button ">
-					<span data-action="install"><?php esc_html_e( 'Install Kubio', 'kubio' ); ?></span>
+					<span data-action="install"><?php echo esc_html(SiteLeads::getInstallCompanionButtonLabelWithSiteLeadsCheck()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 				</button>
 			<?php elseif ( $this->getPluginState( $this->plugin_slug ) === PluginsManager::INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="activate" data-source="customizer-sidebar" class="button button-primary kubio-open-editor-panel-button">
-					<span data-action="activate"><?php esc_html_e( 'Activate Kubio', 'kubio' ); ?></span>
+					<span data-action="activate"><?php echo esc_html(SiteLeads::getActivateCompanionButtonLabelWithSiteLeadsCheck());// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 				</button>
 			<?php endif; ?>
 			</div>
