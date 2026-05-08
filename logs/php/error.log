@@ -1,0 +1,4 @@
+[07-May-2026 17:05:17 UTC] PHP Warning:  Undefined array key "width" in C:\Users\litwi\Local Sites\csilvr\app\public\wp-admin\includes\image.php on line 110
+[07-May-2026 17:05:17 UTC] PHP Warning:  Undefined array key "height" in C:\Users\litwi\Local Sites\csilvr\app\public\wp-admin\includes\image.php on line 111
+[07-May-2026 17:06:12 UTC] PHP Warning:  Undefined array key "width" in C:\Users\litwi\Local Sites\csilvr\app\public\wp-admin\includes\image.php on line 110
+[07-May-2026 17:06:12 UTC] PHP Warning:  Undefined array key "height" in C:\Users\litwi\Local Sites\csilvr\app\public\wp-admin\includes\image.php on line 111

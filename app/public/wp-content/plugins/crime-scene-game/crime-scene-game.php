@@ -1981,6 +1981,7 @@ function crime_scene_game() {
                 item.style.top = finalY + '%';
             }
 
+
             function randomiseHiddenItems() {
                 totalEvidenceThisGame = 0;
 
@@ -2067,7 +2068,6 @@ function crime_scene_game() {
                     });
                 });
             }
-
             searchButton.addEventListener('click', function() {
                 if (!selectedFurniture) return;
 
